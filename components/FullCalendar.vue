@@ -58,6 +58,22 @@
                     return false
                 }
             },
+
+            dayRender: {
+                default() {
+                    return (date, cell) => {};
+                }
+            },
+            timezone: {
+                default() {
+                    return false;
+                }
+            },
+            height: {
+                default() {
+                    return '';
+                }
+            },
         },
 
         mounted() {
@@ -71,9 +87,11 @@
                 selectable: this.selectable,
                 selectHelper: this.selectHelper,
                 aspectRatio: 2,
+                height: this.height,
                 timeFormat: 'HH:mm',
                 events: self.events,
                 eventSources: self.eventSources,
+                timezone: this.timezone,
 
                 eventRender(event, element) {
                     if (this.sync) {
@@ -106,6 +124,14 @@
                         allDay: !start.hasTime() && !end.hasTime(),
                     })
                 },
+
+                dayClick(date, jsEvent, view) {
+                    self.$emit('day-click', date, jsEvent, view);
+                },
+
+                dayRender(date, cell) {
+                    self.dayRender(date, cell);
+                },
             })
         },
 
@@ -122,24 +148,24 @@
             this.$on('remove-event', (event) => {
                 $(this.$refs.calendar).fullCalendar('removeEvents', event.id)
             });
-    
+
             this.$on('rerender-events', (event) => {
                 $(this.$refs.calendar).fullCalendar('rerenderEvents')
             });
-    
+
             this.$on('refetch-events', (event) => {
                 $(this.$refs.calendar).fullCalendar('refetchEvents')
             });
-    
+
             this.$on('render-event', (event) => {
                 $(this.$refs.calendar).fullCalendar('renderEvent', event)
             });
-    
+
             this.$on('reload-events', () => {
                 $(this.$refs.calendar).fullCalendar('removeEvents')
                 $(this.$refs.calendar).fullCalendar('addEventSource', this.events)
             });
-    
+
             this.$on('rebuild-sources', () => {
                 $(this.$refs.calendar).fullCalendar('removeEvents')
                 this.eventSources.map(event => {
