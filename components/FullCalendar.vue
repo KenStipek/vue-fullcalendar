@@ -64,14 +64,22 @@
                     return (date, cell) => {};
                 }
             },
+
             timezone: {
                 default() {
                     return false;
                 }
             },
+
             height: {
                 default() {
                     return '';
+                }
+            },
+
+            locale: {
+                default() {
+                    return 'en';
                 }
             },
         },
@@ -92,6 +100,7 @@
                 events: self.events,
                 eventSources: self.eventSources,
                 timezone: this.timezone,
+                lang: this.locale,
 
                 eventRender(event, element) {
                     if (this.sync) {
