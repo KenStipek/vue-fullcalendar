@@ -141,6 +141,10 @@
                 dayRender(date, cell) {
                     self.dayRender(date, cell);
                 },
+
+                viewRender(view, element) {
+                  self.$emit('view-render', view, element);
+                },
             })
         },
 
@@ -151,6 +155,12 @@
                     this.$emit('reload-events');
                 },
             }
+        },
+
+        methods: {
+            gotoDate(date) {
+              $(this.$refs.calendar).fullCalendar('gotoDate', date);
+            },
         },
 
         created() {
