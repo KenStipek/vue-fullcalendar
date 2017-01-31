@@ -154,7 +154,13 @@
                 handler(val) {
                     this.$emit('reload-events');
                 },
-            }
+            },
+            eventSources: {
+                deep: true,
+                handler(val) {
+                    this.$emit('reload-events');
+                },
+            },
         },
 
         methods: {
