@@ -158,7 +158,7 @@
             eventSources: {
                 deep: true,
                 handler(val) {
-                    this.$emit('reload-events');
+                    this.$emit('rebuild-sources');
                 },
             },
         },
