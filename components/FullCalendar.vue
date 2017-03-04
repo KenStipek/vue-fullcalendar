@@ -96,7 +96,7 @@
                 selectHelper: this.selectHelper,
                 aspectRatio: 2,
                 height: this.height,
-                timeFormat: 'HH:mm',
+                timeFormat: 'hh:mmt',
                 events: self.events,
                 eventSources: self.eventSources,
                 timezone: this.timezone,
@@ -200,4 +200,4 @@
         },
     }
 </script>
-<style src="../../fullcalendar/dist/fullcalendar.css"></style> 
+<style src="../../fullcalendar/dist/fullcalendar.css"></style>
